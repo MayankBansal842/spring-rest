@@ -1,5 +1,6 @@
 package com.example.rest.webservices.restful_web_services.user;
 
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
@@ -38,5 +39,10 @@ public class UserResourceController {
                             .buildAndExpand(addedUser.getId())
                             .toUri();
         return ResponseEntity.created(location).build();
+    }
+
+    @DeleteMapping("/users/{id}")
+    public void deleteUser(@PathVariable int id) {
+        userDaoService.deleteUserById(id);
     }
 }

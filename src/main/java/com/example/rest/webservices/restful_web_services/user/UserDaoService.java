@@ -28,13 +28,16 @@ public class UserDaoService {
 //        }
 //        return null;
 
-        User user = users.stream().filter(user1 -> user1.getId() == id).findFirst().orElse(null);
-        return user;
+        return users.stream().filter(user1 -> user1.getId() == id).findFirst().orElse(null);
     }
 
     public User addUser(User user) {
         user.setId(++userCount);
         users.add(user);
         return user;
+    }
+
+    public void deleteUserById(int id) {
+        users.removeIf(user -> user.getId() == id);
     }
 }
