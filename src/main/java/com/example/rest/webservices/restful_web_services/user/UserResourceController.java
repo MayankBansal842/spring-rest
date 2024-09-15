@@ -1,5 +1,7 @@
 package com.example.rest.webservices.restful_web_services.user;
 
+import org.springframework.hateoas.EntityModel;
+import org.springframework.hateoas.server.mvc.WebMvcLinkBuilder;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -20,13 +22,19 @@ public class UserResourceController {
         return userDaoService.getAllUsers();
     }
 
+//    WebMvcLinkBuilder is used to add links
+//    To use hateoas we will wrap the  user with entity model
     @GetMapping("/users/{id}")
-    public User getUser(@PathVariable int id) {
+    public EntityModel<User> getUser(@PathVariable int id) {
         User user = userDaoService.getUserById(id);
         if (user == null) {
             throw new UserNotFoundException("id=" + id);
         } else {
-            return user;
+            EntityModel<User> entityModel = EntityModel.of(user);
+            WebMvcLinkBuilder linkBuilder = WebMvcLinkBuilder.linkTo(WebMvcLinkBuilder.methodOn(UserResourceController.class).getAllUsers());
+
+            entityModel.add(linkBuilder.withRel("allUsers"));
+            return entityModel;
         }
     }
 

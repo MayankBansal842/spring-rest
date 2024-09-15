@@ -39,6 +39,12 @@
 			<artifactId>spring-boot-starter-web</artifactId>
 		</dependency>
 
+<!--		Hateoas lets you send data and how to perform actions in your api results-->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-hateoas</artifactId>
+		</dependency>
+
 <!--		Used to convert json to xml according to headers-->
 		<dependency>
 			<groupId>com.fasterxml.jackson.dataformat</groupId>
