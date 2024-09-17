@@ -1,10 +1,14 @@
 package com.example.rest.webservices.restful_web_services.user;
 
+import com.example.rest.webservices.restful_web_services.post.Post;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 
 import java.time.LocalDate;
+import java.util.List;
 
 @Entity(name = "user_details")
 public class User {
@@ -13,6 +17,10 @@ public class User {
     private int id;
     private String name;
     private LocalDate birthDate;
+
+    @OneToMany(mappedBy = "user")
+    @JsonIgnore
+    private List<Post> posts;
 
     public User() {
 
