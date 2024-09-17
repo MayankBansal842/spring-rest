@@ -1,11 +1,22 @@
 package com.example.rest.webservices.restful_web_services.user;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.Id;
+
 import java.time.LocalDate;
 
+@Entity(name = "user_details")
 public class User {
+    @Id
+    @GeneratedValue
     private int id;
     private String name;
     private LocalDate birthDate;
+
+    public User() {
+
+    }
 
     public User(int id, String name, LocalDate birthDate) {
         this.id = id;
