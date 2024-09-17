@@ -57,4 +57,9 @@ public class Post {
     public void setUser(User user) {
         this.user = user;
     }
+
+    @Override
+    public String toString() {
+        return "Post : {\n\tid: " + id + "\n\ttitle: " + title + "\n\tcontent: " + content + "\n}";
+    }
 }
